@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TamBan Online</string>
+    <string name="title_activity_select_lokasi">Map</string>
 </resources>

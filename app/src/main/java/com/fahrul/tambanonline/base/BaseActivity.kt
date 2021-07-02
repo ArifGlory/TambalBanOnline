@@ -24,6 +24,7 @@ open class BaseActivity : AppCompatActivity() {
     val myDB = FirebaseFirestore.getInstance()
     val userRef = myDB.collection("users")
     val settingsRef = myDB.collection("settings")
+    val tambalRef = myDB.collection("tambal_ban")
 
 
     override fun setContentView(view: View?) {

@@ -121,7 +121,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:id="@+id/lineAddPemilik"
+                    android:id="@+id/lineAddTambal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
