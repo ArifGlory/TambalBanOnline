@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TamBan Online.iml" filepath="$PROJECT_DIR$/TamBan Online.iml" group="TamBan Online" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="TamBan Online/app" />
+    </modules>
+  </component>
+</project>
