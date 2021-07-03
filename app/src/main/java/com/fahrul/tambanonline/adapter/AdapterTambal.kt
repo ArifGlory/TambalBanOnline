@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fahrul.tambanonline.R
+import com.fahrul.tambanonline.activity.DetailTambalActivity
 import com.fahrul.tambanonline.model.TambalBan
 import com.google.firebase.auth.FirebaseAuth
 import com.tapisdev.mysteam.model.UserModel
@@ -54,9 +55,9 @@ class AdapterTambal(private val list:ArrayList<TambalBan>) : RecyclerView.Adapte
 
         holder.view.lineSteam.setOnClickListener {
             Log.d("adapterIsi",""+list.get(position).toString())
-            /*val i = Intent(holder.view.lineSteam.context, DetailSteamActivity::class.java)
-            i.putExtra("steam",list.get(position) as Serializable)
-            holder.view.lineSteam.context.startActivity(i)*/
+            val i = Intent(holder.view.lineSteam.context, DetailTambalActivity::class.java)
+            i.putExtra("tambal",list.get(position) as Serializable)
+            holder.view.lineSteam.context.startActivity(i)
         }
 
     }
