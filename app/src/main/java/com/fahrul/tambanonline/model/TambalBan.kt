@@ -12,5 +12,6 @@ data class TambalBan(
     var foto : String = "",
     var lat : String = "",
     var lon : String = "",
-    var id_tambal : String = ""
+    var id_tambal : String = "",
+    var created_at : String = ""
 ) : Parcelable,java.io.Serializable
