@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fahrul.tambanonline.MainActivity
 import com.fahrul.tambanonline.R
+import com.fahrul.tambanonline.activity.ProfilActivity
 import com.fahrul.tambanonline.adapter.AdapterTambal
 import com.fahrul.tambanonline.model.TambalBan
 import com.google.firebase.firestore.Query
@@ -51,6 +52,10 @@ class HomeAdminActivity : BaseActivity() {
         }
         lineSemuaTambal.setOnClickListener {
             startActivity(Intent(this, ListTambalActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
+        }
+        lineProfilAdmin.setOnClickListener {
+            startActivity(Intent(this, ProfilActivity::class.java))
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
         }
     }
