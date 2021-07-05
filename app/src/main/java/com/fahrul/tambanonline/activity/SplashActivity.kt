@@ -7,6 +7,7 @@ import android.util.Log
 import com.fahrul.tambanonline.MainActivity
 import com.fahrul.tambanonline.R
 import com.fahrul.tambanonline.activity.admin.HomeAdminActivity
+import com.fahrul.tambanonline.activity.pengguna.HomePenggunaActivity
 import com.tapisdev.cateringtenda.base.BaseActivity
 import com.tapisdev.mysteam.model.UserModel
 import com.tapisdev.mysteam.model.UserPreference
@@ -54,9 +55,8 @@ class SplashActivity : BaseActivity() {
                                     val i = Intent(applicationContext, HomeAdminActivity::class.java)
                                     startActivity(i)
                                 }else if(mUserPref.getJenisUser().equals("pengguna")){
-                                    /*val i = Intent(applicationContext,HomePenggunaActivity::class.java)
-                                    startActivity(i)*/
-                                    showInfoMessage("sedang dalam pembuatan")
+                                    val i = Intent(applicationContext, HomePenggunaActivity::class.java)
+                                    startActivity(i)
                                 }else{
                                     val i = Intent(applicationContext, MainActivity::class.java)
                                     startActivity(i)
