@@ -56,10 +56,10 @@ class AddTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
         ivProfile.setOnClickListener {
             launchGallery()
         }
-        btnLokasi.setOnClickListener {
+       /* btnLokasi.setOnClickListener {
             startActivity(Intent(this, SelectLokasiActivity::class.java))
             overridePendingTransition(R.anim.slide_in_left, android.R.anim.slide_out_right)
-        }
+        }*/
         btnDaftarkan.setOnClickListener {
             checkValidation()
         }
@@ -68,6 +68,7 @@ class AddTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
     fun checkValidation(){
         var getName = edName.text.toString()
         var getAlamat = edAlamat.text.toString()
+        var getURLMAP = edUrlMap.text.toString()
 
         var dateTimeNow = ""+sdfTime.format(Date())
 
@@ -75,9 +76,12 @@ class AddTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
             showErrorMessage("Nama Belum diisi")
         } else if (getAlamat.equals("") || getAlamat.length == 0){
             showErrorMessage("Alamat Belum diisi")
-        } else if (lat == 0.0){
+        } else if (getURLMAP.equals("") || getURLMAP.length == 0){
+            showErrorMessage("URL Map Belum diisi")
+        }
+        /*else if (lat == 0.0){
             showErrorMessage("Lokasi belum dpilih")
-        }else if (fileUri == null){
+        }*/else if (fileUri == null){
             showErrorMessage("anda belum memilih foto")
         }
         else {
@@ -85,8 +89,9 @@ class AddTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
                 getName,
                 getAlamat,
                 "",
-                lat.toString(),
-                lon.toString(),
+                getURLMAP,
+                /*lat.toString(),
+                lon.toString(),*/
                 "",
                 dateTimeNow
             )
@@ -203,9 +208,9 @@ class AddTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
             lat = SharedVariable.centerLatLon.latitude
             lon = SharedVariable.centerLatLon.longitude
 
-            val img: Drawable = btnLokasi.context.resources.getDrawable(R.drawable.ic_check_black_24dp)
+            /*val img: Drawable = btnLokasi.context.resources.getDrawable(R.drawable.ic_check_black_24dp)
             btnLokasi.setText("Lokasi Telah dipilih")
-            btnLokasi.setCompoundDrawables(img,null,null,null)
+            btnLokasi.setCompoundDrawables(img,null,null,null)*/
         }
     }
 }

@@ -59,10 +59,10 @@ class UbahLokasiActivity : BaseActivity(), OnMapReadyCallback,PermissionHelper.P
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
-        val lokasiTambal = LatLng(tambal.lat.toDouble(), tambal.lon.toDouble())
-        val zoomLevel = 16.0f //This goes up to 21
+        //val lokasiTambal = LatLng(tambal.lat.toDouble(), tambal.lon.toDouble())
+        /*val zoomLevel = 16.0f //This goes up to 21
         mMap.addMarker(MarkerOptions().position(lokasiTambal).title("Lokasi Tambal"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiTambal,zoomLevel))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiTambal,zoomLevel))*/
 
         if(this.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED){

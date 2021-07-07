@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_ubah_tambal.*
 import kotlinx.android.synthetic.main.activity_ubah_tambal.edAlamat
 import kotlinx.android.synthetic.main.activity_ubah_tambal.edName
 import kotlinx.android.synthetic.main.activity_ubah_tambal.ivProfile
+import kotlinx.android.synthetic.main.activity_ubah_tambal.edUrlMap
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.Serializable
@@ -62,11 +63,11 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
         ivProfile.setOnClickListener {
             launchGallery()
         }
-        btnUbahLokasi.setOnClickListener {
+        /*btnUbahLokasi.setOnClickListener {
             val i = Intent(this,UbahLokasiActivity::class.java)
             i.putExtra("tambal",tambal as Serializable)
             startActivity(i)
-        }
+        }*/
         btnUpdateData.setOnClickListener {
             checkValidation()
         }
@@ -77,14 +78,19 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
     fun checkValidation(){
         var getName = edName.text.toString()
         var getAlamat = edAlamat.text.toString()
+        var getURLMap = edUrlMap.text.toString()
 
         if (getName.equals("") || getName.length == 0){
             showErrorMessage("Nama Belum diisi")
         } else if (getAlamat.equals("") || getAlamat.length == 0){
             showErrorMessage("Alamat Belum diisi")
-        } else if (fileUri == null){
+        }else if (getURLMap.equals("") || getURLMap.length == 0){
+            showErrorMessage("URLMap Belum diisi")
+        }
+        else if (fileUri == null){
             tambal.nama_tambal = getName
             tambal.alamat = getAlamat
+            tambal.url_map = getURLMap
             updateWithoutFoto()
         }
         else {
@@ -94,14 +100,13 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
 
     fun updateWithoutFoto(){
         showLoading(this)
-        if (lat == 0.0){
+        /*if (lat == 0.0){
             lat = tambal.lat.toDouble()
             lon = tambal.lon.toDouble()
-        }
+        }*/
         tambalRef.document(tambal.id_tambal).update("nama_tambal",tambal.nama_tambal)
         tambalRef.document(tambal.id_tambal).update("alamat",tambal.alamat)
-        tambalRef.document(tambal.id_tambal).update("lat",lat.toString())
-        tambalRef.document(tambal.id_tambal).update("lon",lon.toString()).addOnCompleteListener { task ->
+        tambalRef.document(tambal.id_tambal).update("url_map",tambal.url_map).addOnCompleteListener { task ->
             dismissLoading()
             if (task.isSuccessful){
                 showSuccessMessage("Ubah data berhasil")
@@ -113,6 +118,19 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
                 Log.d(TAG_UBAH,"err : "+task.exception)
             }
         }
+        //tambalRef.document(tambal.id_tambal).update("lat",lat.toString())
+        /*tambalRef.document(tambal.id_tambal).update("lon",lon.toString()).addOnCompleteListener { task ->
+            dismissLoading()
+            if (task.isSuccessful){
+                showSuccessMessage("Ubah data berhasil")
+                startActivity(Intent(this, ListTambalActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
+                finish()
+            }else{
+                showLongErrorMessage("terjadi kesalahan : "+task.exception)
+                Log.d(TAG_UBAH,"err : "+task.exception)
+            }
+        }*/
     }
 
     fun  updateWithFoto(){
@@ -145,8 +163,9 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
                         val url = downloadUri!!.toString()
                         tambalRef.document(tambal.id_tambal).update("nama_tambal",tambal.nama_tambal)
                         tambalRef.document(tambal.id_tambal).update("alamat",tambal.alamat)
-                        tambalRef.document(tambal.id_tambal).update("lat",lat.toString())
-                        tambalRef.document(tambal.id_tambal).update("lon",lon.toString())
+                        tambalRef.document(tambal.id_tambal).update("url_map",tambal.url_map)
+                        /*tambalRef.document(tambal.id_tambal).update("lat",lat.toString())
+                        tambalRef.document(tambal.id_tambal).update("lon",lon.toString())*/
                         Log.d(TAG_UBAH,"download URL : "+ downloadUri.toString())// This is the one you should store
                         tambalRef.document(tambal.id_tambal).update("foto",url).addOnCompleteListener { task ->
                             dismissLoading()
@@ -184,6 +203,7 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
             .into(ivProfile)
         edName.setText(tambal.nama_tambal)
         edAlamat.setText(tambal.alamat)
+        edUrlMap.setText(tambal.url_map)
     }
 
     private fun launchGallery() {
@@ -225,9 +245,9 @@ class UbahTambalActivity : BaseActivity(),PermissionHelper.PermissionListener {
             lat = SharedVariable.centerLatLon.latitude
             lon = SharedVariable.centerLatLon.longitude
 
-            val img: Drawable = btnUbahLokasi.context.resources.getDrawable(R.drawable.ic_check_black_24dp)
+            /*val img: Drawable = btnUbahLokasi.context.resources.getDrawable(R.drawable.ic_check_black_24dp)
             btnUbahLokasi.setText("Lokasi Telah diubah")
-            btnUbahLokasi.setCompoundDrawables(img,null,null,null)
+            btnUbahLokasi.setCompoundDrawables(img,null,null,null)*/
         }
     }
 

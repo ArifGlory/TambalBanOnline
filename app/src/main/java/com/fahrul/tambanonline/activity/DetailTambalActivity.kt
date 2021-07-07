@@ -2,7 +2,6 @@ package com.fahrul.tambanonline.activity
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,6 +14,7 @@ import com.tapisdev.cateringtenda.base.BaseActivity
 import com.tapisdev.mysteam.model.UserPreference
 import kotlinx.android.synthetic.main.activity_detail_tambal.*
 import java.io.Serializable
+
 
 class DetailTambalActivity : BaseActivity() {
 
@@ -30,15 +30,19 @@ class DetailTambalActivity : BaseActivity() {
         tambal = i.getSerializableExtra("tambal") as TambalBan
 
         cvCekLokasi.setOnClickListener {
-            var urlMap = "geo:0,0?q="+tambal.lat+","+tambal.lon+"("+tambal.nama_tambal+")"
+            /*var urlMap = "geo:0,0?q="+tambal.lat+","+tambal.lon+"("+tambal.nama_tambal+")"
             Log.d("infomap"," "+urlMap)
             val gmmIntentUri = Uri.parse(urlMap)
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             mapIntent.resolveActivity(packageManager)?.let {
                 startActivity(mapIntent)
-            }
-
+            }*/
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(tambal.url_map)
+            )
+            startActivity(intent)
         }
         cvHapus.setOnClickListener {
             SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)

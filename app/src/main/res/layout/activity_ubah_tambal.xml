@@ -79,14 +79,19 @@
                             android:hint="Alamat"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pilih Lokasi"
-                        android:id="@+id/btnUbahLokasi"
-                        android:textSize="10sp"
-                        android:drawableLeft="@drawable/ic_place_black_24dp"
-                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textURLPeta"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edUrlMap"
+                            style="@style/modifiedEditText"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:hint="URL Map"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
 
 

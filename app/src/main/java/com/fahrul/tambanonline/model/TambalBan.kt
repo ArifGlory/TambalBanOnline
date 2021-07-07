@@ -10,8 +10,9 @@ data class TambalBan(
     var nama_tambal : String = "",
     var alamat : String = "",
     var foto : String = "",
-    var lat : String = "",
-    var lon : String = "",
+    var url_map : String = "",
+   /* var lat : String = "",
+    var lon : String = "",*/
     var id_tambal : String = "",
     var created_at : String = ""
 ) : Parcelable,java.io.Serializable
