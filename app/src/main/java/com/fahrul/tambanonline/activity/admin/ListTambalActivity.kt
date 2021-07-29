@@ -19,6 +19,7 @@ class ListTambalActivity : BaseActivity() {
 
 
     var TAG_GET_TAMBAL = "getTambalBan"
+    var teksInformasi = ""
     lateinit var adapter: AdapterTambal
 
     var listTambalBan = ArrayList<TambalBan>()
@@ -35,6 +36,27 @@ class ListTambalActivity : BaseActivity() {
 
 
         getDataTambal()
+        getDataInfoListTambal()
+    }
+
+    fun getDataInfoListTambal(){
+        pgSetting.visibility = View.VISIBLE
+        cardTeksInfomasi.isEnabled = false
+
+        settingsRef.document("pengumuman").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                pgSetting.visibility = View.GONE
+                cardTeksInfomasi.isEnabled = true
+
+                teksInformasi = task.result?.get("list_tambal").toString()
+                if (teksInformasi != null) {
+                    tvInfoListTambal.setText(""+teksInformasi)
+                }
+            }else{
+                pgSetting.visibility = View.GONE
+                cardTeksInfomasi.isEnabled = true
+            }
+        }
     }
 
     fun getDataTambal(){
