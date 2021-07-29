@@ -35,9 +35,7 @@ class HomeAdminActivity : BaseActivity() {
         rvTambal.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         rvTambal.adapter = adapter
 
-
         getDataTambalTerbaru()
-
 
         lineLogout.setOnClickListener {
             logout()
@@ -56,6 +54,10 @@ class HomeAdminActivity : BaseActivity() {
         }
         lineProfilAdmin.setOnClickListener {
             startActivity(Intent(this, ProfilActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
+        }
+        lineSetting.setOnClickListener {
+            startActivity(Intent(this, SettingActivity::class.java))
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay)
         }
     }
