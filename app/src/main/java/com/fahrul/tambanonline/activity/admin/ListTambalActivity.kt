@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fahrul.tambanonline.R
@@ -34,6 +35,24 @@ class ListTambalActivity : BaseActivity() {
         rvTambal.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         rvTambal.adapter = adapter
 
+        edSearch.doOnTextChanged { text, start, before, count ->
+
+            var query = text.toString().toLowerCase().trim()
+            var listSearchTambal = ArrayList<TambalBan>()
+
+            for(c in 0 until listTambalBan.size){
+                var namaTambal = listTambalBan.get(c).nama_tambal.toString().toLowerCase().trim()
+                if (namaTambal.contains(query)){
+                    listSearchTambal.add(listTambalBan.get(c))
+                }
+            }
+
+            adapter = AdapterTambal(listSearchTambal)
+            rvTambal.layoutManager = LinearLayoutManager(this)
+            rvTambal.adapter = adapter
+            adapter.notifyDataSetChanged()
+
+        }
 
         getDataTambal()
         getDataInfoListTambal()
